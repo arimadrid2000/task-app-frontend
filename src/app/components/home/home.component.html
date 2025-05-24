@@ -1,0 +1,13 @@
+<div class="flex justify-between items-center mb-4">
+  <h2>Tus tareas</h2>
+  <button mat-flat-button color="primary" (click)="openTaskDialog()">+ Nueva Tarea</button>
+</div>
+
+<div *ngFor="let task of tasks" class="mb-4 border p-3 rounded shadow">
+  <h3>{{ task.title }}</h3>
+  <p>{{ task.description }}</p>
+  <p><strong>Estado:</strong> {{ task.status }}</p>
+  <p><strong>Creada:</strong> {{ task.createdAt | date:'short' }}</p>
+  <button mat-button color="accent" (click)="openTaskDialog(task)">Editar</button>
+  <button mat-button color="warn" (click)="deleteTask(task.id!)">Eliminar</button>
+</div>
