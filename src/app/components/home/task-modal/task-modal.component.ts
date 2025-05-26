@@ -19,12 +19,13 @@ import { MatButtonModule } from '@angular/material/button';
     MatButtonModule
   ],
   templateUrl: './task-modal.component.html',
+  styleUrl: "./task-modal.component.scss"
 })
 export class TaskModalComponent {
   taskForm = this.fb.group({
     title: ['', Validators.required],
     description: [''],
-    status: ['pending', Validators.required]
+    status: ['pendiente', Validators.required]
   });
 
   constructor(

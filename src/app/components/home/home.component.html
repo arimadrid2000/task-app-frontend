@@ -1,13 +1,48 @@
-<div class="flex justify-between items-center mb-4">
-  <h2>Tus tareas</h2>
-  <button mat-flat-button color="primary" (click)="openTaskDialog()">+ Nueva Tarea</button>
+<div class="container">
+  <mat-toolbar>
+    <button mat-stroked-button (click)="returnToLogin()">Cerrar Sesión</button>
+    <span>Listado de tareas</span>
+    <span class="example-spacer"></span>
+    <button mat-stroked-button (click)="openTaskDialog()">Nueva Tarea</button>
+  </mat-toolbar>
+  <table mat-table [dataSource]="tasks" class="mat-elevation-z8 demo-table">
+  <!-- Position Column -->
+  <ng-container matColumnDef="Título">
+    <th mat-header-cell *matHeaderCellDef>Título</th>
+    <td mat-cell *matCellDef="let element">{{element.title}}</td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="Descripción">
+    <th mat-header-cell *matHeaderCellDef>Descripción</th>
+    <td mat-cell *matCellDef="let element">{{element.description}}</td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="Estado">
+    <th mat-header-cell *matHeaderCellDef>Estado</th>
+    <td mat-cell *matCellDef="let element">{{element.status}}</td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="Fecha de creación">
+    <th mat-header-cell *matHeaderCellDef>Fecha de creación</th>
+    <td mat-cell *matCellDef="let element">{{element.createdAt | date:'short'}}</td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="Acciones">
+    <th mat-header-cell *matHeaderCellDef>Acciones</th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-button color="accent" (click)="openTaskDialog(element)">Editar</button>
+      <button mat-button color="warn" (click)="deleteTask(element.id!)">Eliminar</button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
 </div>
 
-<div *ngFor="let task of tasks" class="mb-4 border p-3 rounded shadow">
-  <h3>{{ task.title }}</h3>
-  <p>{{ task.description }}</p>
-  <p><strong>Estado:</strong> {{ task.status }}</p>
-  <p><strong>Creada:</strong> {{ task.createdAt | date:'short' }}</p>
-  <button mat-button color="accent" (click)="openTaskDialog(task)">Editar</button>
-  <button mat-button color="warn" (click)="deleteTask(task.id!)">Eliminar</button>
-</div>
+
