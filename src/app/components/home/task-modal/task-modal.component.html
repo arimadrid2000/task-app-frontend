@@ -1,35 +1,59 @@
-<div class="container">
-  <h2 mat-dialog-title>{{ data?.task ? 'Editar' : 'Crear' }} tarea</h2>
+<h2 mat-dialog-title class="text-lg sm:text-xl font-semibold px-4 sm:px-6 pt-4 sm:pt-6">
+  {{ data?.task ? 'Editar' : 'Crear' }} tarea
+  <mat-icon class="float-right cursor-pointer scale-90 sm:scale-100" (click)="cancel()">close</mat-icon>
+</h2>
 
-  <form [formGroup]="taskForm" (ngSubmit)="submit()" class="form-flex">
-    <div>
-      <mat-form-field appearance="fill" class="w-full">
-        <mat-label>Título</mat-label>
-        <input matInput formControlName="title" required />
-      </mat-form-field>
-    </div>
-    <div>
-      <mat-form-field appearance="fill" class="w-full">
-        <mat-label>Descripción</mat-label>
-        <textarea matInput formControlName="description"></textarea>
-      </mat-form-field>
-    </div>
-    <!-- <div>
-      <mat-form-field appearance="fill" class="w-full">
-        <mat-label>Estado</mat-label>
-        <mat-select formControlName="status">
-          <mat-option value="pending">Pendiente</mat-option>
-          <mat-option value="in-progress">En progreso</mat-option>
-          <mat-option value="completed">Completado</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div> -->
+<mat-dialog-content class="px-4 sm:px-6 pb-2">
+  <form [formGroup]="taskForm" (ngSubmit)="submit()" class="space-y-3 sm:space-y-4">
+    <!-- Title Field -->
+    <mat-form-field  class="w-full">
+      <mat-label class="text-sm sm:text-base">Título</mat-label>
+      <input matInput formControlName="title" required class="text-sm sm:text-base" />
+      <mat-error *ngIf="taskForm.get('title')?.hasError('required')" class="text-xs sm:text-sm">
+        El título es obligatorio
+      </mat-error>
+    </mat-form-field>
 
+    <!-- Description Field -->
+    <mat-form-field  class="w-full">
+      <mat-label class="text-sm sm:text-base">Descripción</mat-label>
+      <textarea matInput formControlName="description" rows="2 sm:rows-3" class="text-sm sm:text-base"></textarea>
+    </mat-form-field>
 
-
-    <div class="mt-4 flex justify-end gap-2">
-      <button mat-button type="button" (click)="cancel()">Cancelar</button>
-      <button mat-flat-button color="primary" type="submit">Guardar</button>
-    </div>
+    <!-- Status Field -->
+    <!-- <mat-form-field  class="w-full" hidden>
+      <mat-label class="text-sm sm:text-base">Estado</mat-label>
+      <mat-select formControlName="status" panelClass="text-sm sm:text-base">
+        <mat-option value="pending">
+          <div class="flex items-center text-sm sm:text-base">
+            <span class="inline-block w-2 h-2 rounded-full bg-amber-500 mr-2"></span>
+            Pendiente
+          </div>
+        </mat-option>
+        <mat-option value="completed">
+          <div class="flex items-center text-sm sm:text-base">
+            <span class="inline-block w-2 h-2 rounded-full bg-green-500 mr-2"></span>
+            Completado
+          </div>
+        </mat-option>
+      </mat-select>
+    </mat-form-field> -->
   </form>
-</div>
+</mat-dialog-content>
+
+<mat-dialog-actions class="px-4 sm:px-6 pb-4 sm:pb-6 justify-end sm:justify-end gap-2">
+  <button mat-stroked-button
+          type="button"
+          (click)="cancel()"
+          class="mr-0 sm:mr-2 text-sm sm:text-base py-1 sm:py-2 px-3 sm:px-4">
+    Cancelar
+  </button>
+  <button mat-flat-button
+          color="primary"
+          type="submit"
+          [disabled]="taskForm.invalid"
+          (click)="submit()"
+          class="text-sm sm:text-base py-1 sm:py-2 px-3 sm:px-4">
+    {{ data?.task ? 'Actualizar' : 'Crear' }}
+  </button>
+</mat-dialog-actions>

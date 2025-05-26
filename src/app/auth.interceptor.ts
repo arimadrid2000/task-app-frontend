@@ -4,29 +4,38 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
+  HttpErrorResponse
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor() {}
+   constructor(private router: Router) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const token = localStorage.getItem('token'); // Obtiene el token del localStorage
+    const token = localStorage.getItem('token');
 
-    // Si la solicitud no es para las rutas de autenticación (login/register)
-    // Y si hay un token, clona la solicitud y añade el encabezado Authorization
-    if (token && !request.url.includes('/auth/')) { // <--- ¡CLAVE! No añadir el token a rutas de auth
+    if (token && !request.url.includes('/auth/')) {
       request = request.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`
         }
       });
     }
+    return next.handle(request).pipe(
+      catchError((err: HttpErrorResponse) => {
+        if (err.status === 401) {
+          localStorage.removeItem('token');
+          localStorage.removeItem('userId');
+          this.router.navigate(['/']);
+        }
 
-    // Continúa con la solicitud modificada (o la original)
-    return next.handle(request);
+        return throwError(() => err);
+      })
+    );
   }
 }

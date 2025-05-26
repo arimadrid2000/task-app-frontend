@@ -1,0 +1,30 @@
+:host {
+  display: block;
+}
+
+.dialog-card {
+
+
+}
+
+
+mat-icon {
+  vertical-align: middle;
+  font-size: inherit;
+  height: unset !important;
+  width: unset !important;
+}
+
+
+h2 mat-icon {
+    font-size: 3rem !important;
+    width: 3rem !important;
+    height: 3rem !important;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+
+button.mat-raised-button {
+  background-color: var(--color-primary-text);
+}

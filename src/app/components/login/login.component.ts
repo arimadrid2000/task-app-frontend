@@ -7,6 +7,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ConfirmCreateUserDialogComponent } from '../../shared/confirm-create-user-dialog/confirm-create-user-dialog.component';
 
 @Component({
   selector: 'app-login',
@@ -17,32 +19,41 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
    email = '';
-   constructor(private auth: AuthService, private router: Router) {}
+   constructor(private auth: AuthService, private router: Router, private dialog: MatDialog) {}
 
   login() {
     this.auth.login(this.email).subscribe({
       next: user => {
-         this.saveSession(user);
+        this.saveSession(user);
         this.router.navigate(['/home']);
       },
       error: err => {
-        if (err.status === 404) {
-          const confirmCreate = confirm('Usuario no encontrado. ¿Crear cuenta?');
-          if (confirmCreate) {
+        if (err.status === 401) {
+          const confirmCreate = this.dialog.open(ConfirmCreateUserDialogComponent,
+            {
+              panelClass: 'custom-dialog-container'
+            }
+          );
+
+        confirmCreate.afterClosed().subscribe(result => {
+          if(result) {
             this.auth.create(this.email).subscribe({
               next: newUser => {
-                 this.saveSession(newUser);
+                console.log(newUser)
+                this.saveSession(newUser);
                 this.router.navigate(['/home']);
               }
             });
           }
+        });
         }
       }
     });

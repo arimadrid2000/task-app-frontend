@@ -11,7 +11,7 @@ describe('TaskModalComponent', () => {
       imports: [TaskModalComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(TaskModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

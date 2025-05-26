@@ -1,0 +1,49 @@
+.mat-table {
+    width: 100%;
+
+    .mat-header-cell {
+      font-weight: 600;
+      font-size: 0.875rem;
+      color: #4b5563;
+    }
+
+    .mat-cell {
+      padding: 12px 16px;
+    }
+
+    .mat-row {
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: #f9fafb;
+      }
+    }
+  }
+
+  .mat-card {
+    padding: 0;
+    overflow: hidden;
+  }
+
+
+
+  .status-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .status-label {
+    min-width: 100px;
+    display: inline-block;
+  }
+
+  .example-spacer {
+  flex: 1 1 auto;
+}
+
+.task-toolbar {
+  display: flex;
+  justify-content: space-between;
+}
+

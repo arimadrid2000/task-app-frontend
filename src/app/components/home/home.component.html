@@ -1,48 +1,83 @@
-<div class="container">
-  <mat-toolbar>
-    <button mat-stroked-button (click)="returnToLogin()">Cerrar Sesión</button>
-    <span>Listado de tareas</span>
-    <span class="example-spacer"></span>
-    <button mat-stroked-button (click)="openTaskDialog()">Nueva Tarea</button>
-  </mat-toolbar>
-  <table mat-table [dataSource]="tasks" class="mat-elevation-z8 demo-table">
-  <!-- Position Column -->
-  <ng-container matColumnDef="Título">
-    <th mat-header-cell *matHeaderCellDef>Título</th>
-    <td mat-cell *matCellDef="let element">{{element.title}}</td>
-  </ng-container>
+<div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6 w-full">
+  <button mat-stroked-button color="warn" (click)="returnToLogin()">
+    Cerrar Sesión
+  </button>
 
-  <!-- Name Column -->
-  <ng-container matColumnDef="Descripción">
-    <th mat-header-cell *matHeaderCellDef>Descripción</th>
-    <td mat-cell *matCellDef="let element">{{element.description}}</td>
-  </ng-container>
-
-  <!-- Weight Column -->
-  <ng-container matColumnDef="Estado">
-    <th mat-header-cell *matHeaderCellDef>Estado</th>
-    <td mat-cell *matCellDef="let element">{{element.status}}</td>
-  </ng-container>
-
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="Fecha de creación">
-    <th mat-header-cell *matHeaderCellDef>Fecha de creación</th>
-    <td mat-cell *matCellDef="let element">{{element.createdAt | date:'short'}}</td>
-  </ng-container>
-
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="Acciones">
-    <th mat-header-cell *matHeaderCellDef>Acciones</th>
-    <td mat-cell *matCellDef="let element">
-      <button mat-button color="accent" (click)="openTaskDialog(element)">Editar</button>
-      <button mat-button color="warn" (click)="deleteTask(element.id!)">Eliminar</button>
-    </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
-
+  <h2 class="text-2xl font-semibold order-1 sm:order-2 sm:absolute sm:left-1/2 sm:transform sm:-translate-x-1/2">
+    Listado de tareas
+  </h2>
+  <div class="flex gap-3 order-2 sm:order-3 w-full sm:w-auto justify-end">
+    <button mat-flat-button color="primary" (click)="openTaskDialog()">
+      <mat-icon>add</mat-icon> Agregar Tarea
+    </button>
+  </div>
 </div>
 
+
+<mat-card class="shadow-lg overflow-hidden">
+  <div class="overflow-x-auto sm:overflow-x-visible">
+    <mat-table [dataSource]="tasks" class="w-full min-w-[300px] sm:min-w-[600px]">
+
+      <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef class="text-sm sm:text-base">Título</mat-header-cell>
+        <mat-cell *matCellDef="let task" class="text-xs sm:text-sm">
+          <div class="font-medium truncate max-w-[120px] sm:max-w-none">{{ task.title }}</div>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef class="hidden sm:table-cell">Descripción</mat-header-cell>
+        <mat-cell *matCellDef="let task" class="hidden sm:table-cell">
+          <div class="text-xs sm:text-sm text-gray-500 line-clamp-2">{{ task.description }}</div>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef class="text-xs sm:text-sm">Estado</mat-header-cell>
+        <mat-cell *matCellDef="let task" class="text-xs sm:text-sm">
+          <div class="flex items-center gap-1 sm:gap-2">
+            <span class="truncate max-w-[60px] sm:max-w-none">{{ getStatusLabel(task.status) }}</span>
+            <mat-checkbox [checked]="task.status === 'completado'"
+                         (change)="toggleTaskStatus(task)"
+                         color="primary"
+                         class="scale-75 sm:scale-100">
+            </mat-checkbox>
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="createdAt">
+        <mat-header-cell *matHeaderCellDef class="text-xs sm:text-sm">Creada</mat-header-cell>
+        <mat-cell *matCellDef="let task" class="text-xs sm:text-sm">
+          {{ (task.createdAt._seconds * 1000) | date:'shortDate' }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef class="hidden sm:table-cell">Acciones</mat-header-cell>
+        <mat-cell *matCellDef="let task" class="hidden sm:table-cell">
+          <button mat-icon-button color="accent" (click)="openTaskDialog(task)" matTooltip="Editar">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteTask(task.id!)" matTooltip="Eliminar">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Adaptación para dispositivos Móvil -->
+      <ng-container matColumnDef="mobileActions">
+        <mat-header-cell *matHeaderCellDef class="sm:hidden">Acciones</mat-header-cell>
+        <mat-cell *matCellDef="let task" class="sm:hidden">
+          <button mat-icon-button color="accent" (click)="openTaskDialog(task)">
+            <mat-icon class="scale-75">edit</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+</mat-card>
 

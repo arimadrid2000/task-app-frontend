@@ -1,4 +1,25 @@
 @import "assets/styles/theme";
+@import "tailwindcss";
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Inter, "Helvetica Neue", sans-serif; }
+.custom-dialog-container {
+
+  max-width: 500px !important;
+  width: 95vw !important;
+
+
+  padding: 0 !important;
+
+
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 1rem !important;
+}
+
+@media (max-width: 600px) {
+  .custom-dialog-container {
+    max-width: 90vw !important;
+  }
+}
+

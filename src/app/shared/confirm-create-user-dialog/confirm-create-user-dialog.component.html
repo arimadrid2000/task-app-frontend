@@ -1,0 +1,12 @@
+<mat-card class="p-6 rounded-lg shadow-lg text-center">
+  <h2 class="text-2xl font-semibold mb-4 text-gray-800">Usuario no encontrado</h2>
+  <p class="mb-8 text-lg text-gray-700">El usuario con este email no existe en nuestra base de datos. ¿Te gustaría crear una cuenta nueva con esta dirección?</p>
+  <div class="flex justify-center gap-6">
+    <button mat-raised-button color="primary" (click)="onConfirm(true)" class="py-2 px-6 text-base rounded-md">
+      Sí, crear cuenta
+    </button>
+    <button mat-button (click)="onConfirm(false)" class="py-2 px-6 text-base rounded-md">
+      Cancelar
+    </button>
+  </div>
+</mat-card>

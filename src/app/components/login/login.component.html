@@ -1,11 +1,17 @@
-<div class="login-container">
-  <mat-card>
-    <h2>Iniciar sesión</h2>
-    <mat-form-field appearance="fill">
+<div class="login-container flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4 box-border">
+  <div class="mb-8">
+    <h3 class="welcome-text h3 text-center font-bold text-indigo-700 text-4xl leading-tight md:text-5xl md:leading-tight">Bienvenido a Task App</h3>
+    <h4 class="welcome-text h4 text-center font-bold text-indigo-700 text-2xl leading-relaxed md:text-3xl md:leading-relaxed">Aquí podrás gestionar tus tareas en tiempo real</h4>
+  </div>
+
+  <mat-card class="mat-card p-8 max-w-md flex flex-col gap-5 rounded-xl shadow-lg bg-white box-border">
+    <h2 class="text-3xl font-semibold text-center text-gray-800 mb-4">Iniciar sesión</h2>
+
+    <mat-form-field appearance="fill" class="w-full">
       <mat-label>Email</mat-label>
-      <input matInput [(ngModel)]="email" type="email" required />
+      <input matInput [(ngModel)]="email" type="email" required placeholder="tu@ejemplo.com">
     </mat-form-field>
 
-    <button mat-raised-button color="primary" (click)="login()">Entrar</button>
+    <button mat-raised-button color="primary" (click)="login()" class="w-full py-3 rounded-lg font-semibold text-lg">Entrar</button>
   </mat-card>
 </div>

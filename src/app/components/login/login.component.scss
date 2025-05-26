@@ -1,13 +1,91 @@
+:root {
+  --color-primary-text: #4F46E5;
+}
+
 .login-container {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  margin-top: 100px;
+  background-color: #f3f4f6;
+  padding: 1rem;
+  box-sizing: border-box;
+  min-height: 100vh;
+}
 
-  mat-card {
-    padding: 30px;
-    width: 400px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.welcome-text {
+  text-align: center;
+  font-weight: bold;
+  color: var(--color-primary-text);
+  margin-bottom: 0.5rem;
+  animation: flashIn 1.5s ease-out forwards;
+  opacity: 0;
+  word-wrap: break-word;
+}
+
+.welcome-text.h3 {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  animation-delay: 0.2s;
+
+  @screen md { // Tailwind CSS media query syntax in SCSS
+    font-size: 3rem; // Larger on medium screens and up
+    line-height: 3.5rem;
+  }
+  @screen lg {
+    font-size: 4rem; // Even larger on large screens
+    line-height: 4.5rem;
   }
 }
+
+.welcome-text.h4 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  animation-delay: 0.7s;
+
+  @screen md { // Tailwind CSS media query syntax in SCSS
+    font-size: 2rem; // Larger on medium screens and up
+    line-height: 2.5rem;
+  }
+  @screen lg {
+    font-size: 2.5rem; // Even larger on large screens
+    line-height: 3rem;
+  }
+}
+
+@keyframes flashIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+    text-shadow: 0 0 10px rgba(79, 70, 229, 0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+    text-shadow: 0 0 20px rgba(79, 70, 229, 0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    text-shadow: none;
+  }
+}
+
+mat-card {
+  padding: 2rem;
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  background-color: #ffffff;
+}
+
+@media (max-width: 640px) {
+  .mat-card {
+    padding: 1.5rem;
+  }
+}
+

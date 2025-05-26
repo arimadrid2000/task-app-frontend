@@ -1,36 +1,75 @@
-# ATOM FE CHALLENGE TEMPLATE - ANGULAR
+# 🚀 Frontend de Gestión de Tareas (API)
 
-Este proyecto es una plantilla con lo necesario para comenzar a desarrollar el front-end de la aplicación de la prueba técnica de Atom. Se base en Angular con la versión 17.3.6.
-Se ha realizado la instalación y configuración de varias dependencias necesarias para el desarrollo de la aplicación, como por ejemplo: Angular Material.
+Este es un proyecto simple de gestión de tareas desarrollado en **Angular**. Permite a los usuarios iniciar sesión con su correo electrónico y realizar operaciones CRUD (crear, leer, actualizar, eliminar) sobre tareas personales.
 
-## Instrucciones
-Siéntete libre de clonar este repositorio y utilizarlo como base para el desarrollo de la aplicación. Sigue las indicates de la prueba técnica para completar la aplicación y desarrolla como más te sientas cómodo.
+## 🚀 Características
 
-De igual manera puedes documentar dentro de este archivo todo lo que deseas contar sobre tu desarrollo, como por ejemplo, decisiones de diseño, problemas encontrados, etc.
+- 🔐 **Inicio de sesión por email**  
+  Los usuarios pueden ingresar su email para iniciar sesión. Si no existe, se les ofrece la opción de crear una cuenta automáticamente.
 
-## Comentarios sobre el desarrollo
-...
+- ✅ **Gestión de tareas personalizadas**
+  - Crear nuevas tareas
+  - Editar tareas existentes
+  - Marcar tareas como completadas o pendientes
+  - Eliminar tareas
+  - Visualizar lista de tareas filtrada por usuario
 
-## Development server
+- 💾 **Persistencia en backend**  
+  Todas las operaciones se comunican con una API REST (servicio backend externo o local).
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 🛠️ Tecnologías utilizadas
 
-## Code scaffolding
+- [Angular 17.3.6](https://angular.io/)
+- Angular Material (UI)
+- RxJS
+- TypeScript
+- LocalStorage (para sesión del usuario)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 📦 Estructura del proyecto
 
-## Build
+src/
+├── app/
+│ ├── components/
+│ │ ├── login/ # Componente de inicio de sesión
+│ │ └── home/ # Componente principal con lista de tareas
+│ │     └── task-modal/ # Modal reutilizable para crear/editar tareas
+│ ├── services/ # Servicios de autenticación y tareas
+│ ├── models/ # Interfaces de datos (Task, User, etc.)
+│ └── app.routes.ts # Rutas principales
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## ⚙️ Instrucciones de instalación
 
-## Running unit tests
+1. **Clona el repositorio:**
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```bash
+- git clone https://github.com/arimadrid2000/task-app-frontend
+- cd task-app-frontend
 
-## Running end-to-end tests
+## Instala las dependencias:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- npm install
 
-## Further help
+## Inicia el servidor de desarrollo
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- ng serve
+
+## Accede al proyecto en el navegador:
+
+- Abre tu navegador y accede a http://localhost:4200/
+
+## Ejecuta las pruebas:
+
+- ng test
+``` 
+
+## 💡 Comentarios sobre el desarrollo
+- El proyecto utiliza Angular Material para la interfaz de usuario.
+
+- El manejo de sesión se hace mediante localStorage, almacenando el userId y un token (si aplica).
+
+- La lógica del estado de las tareas es simple pero extensible.
+
+- Angular Material proporciona los componentes UI como tablas, diálogos, íconos, etc.
+
+## 👩‍💻 Autor
+- Desarrollado por Arianna Madrid
