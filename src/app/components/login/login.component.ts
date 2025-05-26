@@ -48,8 +48,8 @@ export class LoginComponent {
     });
   }
 
-  saveSession(user: any) {
-    localStorage.setItem('userId', user.id);
-    localStorage.setItem('token', user.token);
+  saveSession(userData: any) {
+    localStorage.setItem('userId', userData.user.id);
+    localStorage.setItem('token', userData.token);
   }
 }

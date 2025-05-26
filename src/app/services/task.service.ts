@@ -4,7 +4,7 @@ import { Task } from '../models/task.model';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
-const BASE_URL = environment.API_URL;
+const BASE_URL = environment.apiUrl;
 
 @Injectable({ providedIn: 'root' })
 export class TaskService {
