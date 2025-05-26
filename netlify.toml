@@ -1,0 +1,9 @@
+# netlify.toml
+[build]
+  command = "npm install && npm run build -- --configuration=production"
+  publish = "dist/task-app"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
