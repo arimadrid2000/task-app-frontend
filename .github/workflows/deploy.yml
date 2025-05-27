@@ -1,5 +1,3 @@
-
-
 name: Deploy Frontend to Firebase Hosting
 
 on:
@@ -22,13 +20,15 @@ jobs:
 
     - name: Install Angular dependencies
       run: npm install
+      working-directory: ./task-app-test
 
     - name: Build Angular application
-
       run: npx ng build --configuration=production
+      working-directory: ./task-app-test
 
     - name: Install Firebase CLI
       run: npm install -g firebase-tools
 
     - name: Deploy Angular Frontend to Firebase Hosting
       run: firebase deploy --only hosting --token "${{ secrets.FIREBASE_TOKEN }}" --project task-app-293dd
+      working-directory: ./task-app-test/browser
