@@ -1,4 +1,59 @@
-.mat-table {
+:ng-deep {
+
+  .mat-mdc-dialog-container {
+
+    @media (max-width: 575.98px) {
+      .mat-mdc-dialog-surface {
+        width: 95vw !important;
+      }
+    }
+    @media (min-width: 576px) {
+      .mat-mdc-dialog-surface {
+        max-width: 500px !important;
+        width: 100% !important;
+      }
+    }
+  }
+
+
+  .custom-title-spacing {
+    padding: 1rem 1rem 0.5rem 1rem;
+    font-size: 1.125rem;
+    @media (min-width: 576px) {
+      padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+      font-size: 1.25rem;
+    }
+  }
+
+  .custom-close-icon {
+    font-size: 1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    @media (min-width: 576px) {
+      font-size: 1.6rem;
+      width: 1.6rem;
+      height: 1.6rem;
+      line-height: 1.6rem;
+    }
+  }
+
+  .custom-content-spacing {
+    padding: 0 1rem 0.5rem 1rem;
+    @media (min-width: 576px) {
+      padding: 0 1.5rem 0.5rem 1.5rem;
+    }
+  }
+
+  .custom-actions-spacing {
+    padding: 0.5rem 1rem 1rem 1rem;
+    @media (min-width: 576px) {
+      padding: 1rem 1.5rem 1.5rem 1.5rem;
+    }
+  }
+
+
+  .mat-table {
     width: 100%;
 
     .mat-header-cell {
@@ -20,12 +75,11 @@
     }
   }
 
+
   .mat-card {
     padding: 0;
     overflow: hidden;
   }
-
-
 
   .status-container {
     display: flex;
@@ -37,4 +91,4 @@
     min-width: 100px;
     display: inline-block;
   }
-
+}
