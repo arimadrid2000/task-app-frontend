@@ -1,17 +1,16 @@
-<div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6 w-full">
-  <button mat-stroked-button color="warn" (click)="returnToLogin()">
-    Cerrar Sesión
-  </button>
-
-  <h2 class="text-2xl font-semibold order-1 sm:order-2 sm:absolute sm:left-1/2 sm:transform sm:-translate-x-1/2">
-    Listado de tareas
-  </h2>
-  <div class="flex gap-3 order-2 sm:order-3 w-full sm:w-auto justify-end">
-    <button mat-flat-button color="primary" (click)="openTaskDialog()">
-      <mat-icon>add</mat-icon> Agregar Tarea
-    </button>
+<nav class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand">Listado de tareas</a>
+    <form class="d-flex" role="search">
+      <button mat-stroked-button color="warn" (click)="returnToLogin()">
+        Cerrar Sesión
+      </button>
+      <button mat-flat-button color="primary" (click)="openTaskDialog()">
+        <mat-icon>add</mat-icon> Agregar Tarea
+      </button>
+    </form>
   </div>
-</div>
+</nav>
 
 
 <mat-card class="shadow-lg overflow-hidden">
