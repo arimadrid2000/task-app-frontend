@@ -45,6 +45,8 @@ export class TaskModalComponent {
       this.taskForm.patchValue(data.task);
     }
 
+    console.log(data)
+
     // Configuración responsive inicial
     this.checkViewportSize();
 

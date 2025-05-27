@@ -124,6 +124,7 @@ export class HomeComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      console.log(result)
       if (result) {
         const action$ = task?.id
           ? this.taskService.updateTask(task.id, result)
