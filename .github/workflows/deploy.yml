@@ -31,4 +31,4 @@ jobs:
 
     - name: Deploy Angular Frontend to Firebase Hosting
       run: firebase deploy --only hosting --token "${{ secrets.FIREBASE_TOKEN }}" --project task-app-293dd
-      working-directory: ./task-app-test/browser
+      working-directory: ./browser
